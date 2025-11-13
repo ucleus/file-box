@@ -28,6 +28,17 @@ $requestMethod = $_SERVER['REQUEST_METHOD'];
 // Remove leading slash
 $requestUri = trim($requestUri, '/');
 
+// Serve static assets directly if they exist in the public directory
+if ($requestUri && strpos($requestUri, '..') === false) {
+    $publicPath = __DIR__ . '/' . $requestUri;
+    if (is_file($publicPath)) {
+        $mimeType = mime_content_type($publicPath) ?: 'application/octet-stream';
+        header('Content-Type: ' . $mimeType);
+        readfile($publicPath);
+        exit;
+    }
+}
+
 // Router
 try {
     // Public delivery routes
