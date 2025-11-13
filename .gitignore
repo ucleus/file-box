@@ -1,0 +1,44 @@
+# Environment configuration
+.env
+
+# Database
+database/app.db
+database/*.db
+*.db
+
+# Storage (uploaded files)
+storage/deliveries/*
+storage/zips/*
+!storage/deliveries/.gitkeep
+!storage/zips/.gitkeep
+
+# Logs
+*.log
+error_log
+php_errors.log
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Vendor (if using Composer in future)
+vendor/
+
+# Build files
+npm-debug.log
+yarn-error.log
+.cache/
