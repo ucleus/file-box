@@ -1,5 +1,4 @@
 # Environment configuration
-.env
 
 # Database
 database/app.db

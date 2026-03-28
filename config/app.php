@@ -4,7 +4,7 @@ return [
     'app_name' => 'Ucleus Logo Delivery',
     'studio_name' => 'Ucleus',
     'studio_email' => 'admin@ucleus.com',
-    'base_url' => getenv('BASE_URL') ?: 'http://localhost',
+    'base_url' => getenv('BASE_URL') ?: 'https://ucleus.co/file-box',
 
     // Database
     'db_path' => __DIR__ . '/../database/app.db',
