@@ -25,6 +25,9 @@ class Response
     public static function redirect($url, $status = 302)
     {
         http_response_code($status);
+        if (defined('BASE_PATH') && BASE_PATH !== '' && strpos($url, '/') === 0) {
+            $url = BASE_PATH . $url;
+        }
         header("Location: $url");
         exit;
     }

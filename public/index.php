@@ -15,6 +15,9 @@ spl_autoload_register(function ($class) {
 require_once __DIR__ . '/../src/Utils/Env.php';
 Utils\Env::load(__DIR__ . '/../.env');
 
+// Base path for subdirectory deployments (e.g. /file-box). Empty for root deployments.
+define('BASE_PATH', Utils\Env::get('BASE_PATH', ''));
+
 // Set security headers
 $securityConfig = require __DIR__ . '/../config/security.php';
 foreach ($securityConfig['headers'] as $header => $value) {
@@ -173,7 +176,7 @@ try {
 
     // Home page - redirect to admin login
     if ($requestUri === '' || $requestUri === '/') {
-        header('Location: /admin/login');
+        header('Location: ' . BASE_PATH . '/admin/login');
         exit;
     }
 

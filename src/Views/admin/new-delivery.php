@@ -7,7 +7,7 @@ include __DIR__ . '/../partials/header.php';
 
 <div class="container-narrow">
     <div style="padding-top: 2rem;">
-        <a href="/admin" class="btn btn-secondary btn-sm mb-md">← Back to Dashboard</a>
+        <a href="<?= BASE_PATH ?>/admin" class="btn btn-secondary btn-sm mb-md">← Back to Dashboard</a>
     </div>
 
     <h1>Create New Delivery</h1>
@@ -86,7 +86,7 @@ include __DIR__ . '/../partials/header.php';
             <button class="btn btn-primary" onclick="copyDeliveryLink()">Copy Link</button>
             <button class="btn btn-secondary" onclick="uploadFiles()">Upload Files</button>
             <button class="btn btn-secondary" onclick="sendEmail()">Send Email to Client</button>
-            <a href="/admin" class="btn btn-secondary">Back to Dashboard</a>
+            <a href="<?= BASE_PATH ?>/admin" class="btn btn-secondary">Back to Dashboard</a>
         </div>
     </div>
 

@@ -5,7 +5,7 @@
         $previewable = in_array($ext, ['png', 'jpg', 'jpeg', 'svg']);
         ?>
         <?php if ($previewable): ?>
-            <img src="/dl/<?= htmlspecialchars($delivery['token']) ?>/preview/<?= htmlspecialchars($asset['filename']) ?>"
+            <img src="<?= BASE_PATH ?>/dl/<?= htmlspecialchars($delivery['token']) ?>/preview/<?= htmlspecialchars($asset['filename']) ?>"
                  alt="<?= htmlspecialchars($asset['original_filename']) ?>"
                  loading="lazy">
         <?php else: ?>
@@ -25,7 +25,7 @@
             Preview
         </button>
         <?php endif; ?>
-        <a href="/dl/<?= htmlspecialchars($delivery['token']) ?>/download/<?= htmlspecialchars($asset['filename']) ?>"
+        <a href="<?= BASE_PATH ?>/dl/<?= htmlspecialchars($delivery['token']) ?>/download/<?= htmlspecialchars($asset['filename']) ?>"
            class="btn btn-primary btn-sm"
            download>
             Download

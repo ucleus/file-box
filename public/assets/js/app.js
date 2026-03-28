@@ -84,7 +84,7 @@ document.addEventListener('click', (e) => {
 // ============================================
 
 function previewFile(filename) {
-    const url = `/dl/${window.deliveryToken}/preview/${filename}`;
+    const url = `${window.BASE_PATH}/dl/${window.deliveryToken}/preview/${filename}`;
     window.open(url, '_blank');
 }
 
@@ -95,7 +95,7 @@ function submitTweakRequest(event) {
     const formData = new FormData(form);
     const message = formData.get('message');
 
-    fetch(`/dl/${window.deliveryToken}/tweak`, {
+    fetch(`${window.BASE_PATH}/dl/${window.deliveryToken}/tweak`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: `message=${encodeURIComponent(message)}`
@@ -129,7 +129,7 @@ function requestOTP(event) {
     btn.disabled = true;
     btn.textContent = 'Sending...';
 
-    fetch('/admin/otp/request', {
+    fetch(`${window.BASE_PATH}/admin/otp/request`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: `email=${encodeURIComponent(userEmail)}`
@@ -159,7 +159,7 @@ function verifyOTP(event) {
     btn.disabled = true;
     btn.textContent = 'Verifying...';
 
-    fetch('/admin/otp/verify', {
+    fetch(`${window.BASE_PATH}/admin/otp/verify`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: `email=${encodeURIComponent(userEmail)}&code=${encodeURIComponent(code)}`
@@ -168,7 +168,7 @@ function verifyOTP(event) {
     .then(data => {
         if (data.success) {
             showAlert('Login successful! Redirecting...', 'success');
-            setTimeout(() => window.location.href = '/admin', 1000);
+            setTimeout(() => window.location.href = `${window.BASE_PATH}/admin`, 1000);
         } else {
             showAlert(data.error || 'Invalid code', 'error');
             btn.disabled = false;
@@ -188,7 +188,7 @@ function backToEmail() {
 // ============================================
 
 function copyLink(token) {
-    const url = `${window.location.origin}/dl/${token}`;
+    const url = `${window.location.origin}${window.BASE_PATH}/dl/${token}`;
     navigator.clipboard.writeText(url).then(() => {
         showAlert('Link copied to clipboard!', 'success');
     });
@@ -202,7 +202,7 @@ function showActions(deliveryId) {
 function emailClient() {
     if (!currentDeliveryId) return;
 
-    fetch('/admin/deliveries/email', {
+    fetch(`${window.BASE_PATH}/admin/deliveries/email`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: `delivery_id=${currentDeliveryId}`
@@ -231,7 +231,7 @@ function expireDelivery() {
 }
 
 function updateDeliveryStatus(action) {
-    fetch(`/admin/deliveries/${action}`, {
+    fetch(`${window.BASE_PATH}/admin/deliveries/${action}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: `delivery_id=${currentDeliveryId}`
@@ -251,7 +251,7 @@ function regenerateToken() {
     if (!currentDeliveryId) return;
     if (!confirm('This will invalidate the old link. Continue?')) return;
 
-    fetch('/admin/deliveries/regenerate-token', {
+    fetch(`${window.BASE_PATH}/admin/deliveries/regenerate-token`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: `delivery_id=${currentDeliveryId}`
@@ -270,7 +270,7 @@ function regenerateToken() {
 function repackageZip() {
     if (!currentDeliveryId) return;
 
-    fetch('/admin/deliveries/repackage-zip', {
+    fetch(`${window.BASE_PATH}/admin/deliveries/repackage-zip`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: `delivery_id=${currentDeliveryId}`
@@ -286,7 +286,7 @@ function deleteDelivery() {
     if (!currentDeliveryId) return;
     if (!confirm('This will permanently delete this delivery and all files. Are you sure?')) return;
 
-    fetch('/admin/deliveries/delete', {
+    fetch(`${window.BASE_PATH}/admin/deliveries/delete`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: `delivery_id=${currentDeliveryId}`
@@ -316,7 +316,7 @@ function createDelivery(event) {
     btn.disabled = true;
     btn.textContent = 'Creating...';
 
-    fetch('/admin/deliveries/create', {
+    fetch(`${window.BASE_PATH}/admin/deliveries/create`, {
         method: 'POST',
         body: formData
     })
@@ -329,7 +329,7 @@ function createDelivery(event) {
             // Show success card
             document.getElementById('deliveryForm').closest('.card').classList.add('hidden');
             document.getElementById('successCard').classList.remove('hidden');
-            document.getElementById('deliveryLink').value = `${window.location.origin}/dl/${data.token}`;
+            document.getElementById('deliveryLink').value = `${window.location.origin}${window.BASE_PATH}/dl/${data.token}`;
 
             showAlert('Delivery created successfully!', 'success');
         } else {
@@ -355,7 +355,7 @@ function uploadFiles() {
 function sendEmail() {
     if (!createdDeliveryId) return;
 
-    fetch('/admin/deliveries/email', {
+    fetch(`${window.BASE_PATH}/admin/deliveries/email`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: `delivery_id=${createdDeliveryId}`
@@ -446,7 +446,7 @@ function uploadSelectedFiles() {
     btn.disabled = true;
     btn.textContent = 'Uploading...';
 
-    fetch('/admin/uploads', {
+    fetch(`${window.BASE_PATH}/admin/uploads`, {
         method: 'POST',
         body: formData
     })

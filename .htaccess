@@ -1,0 +1,34 @@
+RewriteEngine On
+
+# Security: block direct access to sensitive directories
+RewriteRule ^\.env$ - [F,L]
+RewriteRule ^config/ - [F,L]
+RewriteRule ^database/ - [F,L]
+RewriteRule ^src/ - [F,L]
+RewriteRule ^storage/ - [F,L]
+RewriteRule ^vendor/ - [F,L]
+
+# Prevent directory listing
+Options -Indexes
+
+# Route all requests through index.php (assets inside public/ are served by PHP)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# Disable server signature
+ServerSignature Off
+
+# Prevent access to git files
+<DirectoryMatch "\.git">
+    Require all denied
+</DirectoryMatch>
+
+# PHP settings (if allowed by hosting)
+<IfModule mod_php.c>
+    php_value upload_max_filesize 50M
+    php_value post_max_size 50M
+    php_value max_execution_time 300
+    php_flag display_errors Off
+    php_flag log_errors On
+</IfModule>

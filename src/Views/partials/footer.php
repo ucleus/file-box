@@ -10,7 +10,7 @@
         </div>
     </footer>
     <?php if (isset($includeJS) && $includeJS): ?>
-    <script src="/assets/js/app.js"></script>
+    <script src="<?= BASE_PATH ?>/assets/js/app.js"></script>
     <?php endif; ?>
 </body>
 </html>

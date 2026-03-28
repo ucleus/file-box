@@ -8,7 +8,7 @@ include __DIR__ . '/../partials/header.php';
 <div class="container">
     <div class="dashboard-header">
         <h1>Deliveries Dashboard</h1>
-        <a href="/admin/deliveries/new" class="btn btn-primary">Create New Delivery</a>
+        <a href="<?= BASE_PATH ?>/admin/deliveries/new" class="btn btn-primary">Create New Delivery</a>
     </div>
 
     <!-- Stats -->
@@ -45,7 +45,7 @@ include __DIR__ . '/../partials/header.php';
                 <tr>
                     <td colspan="6" class="text-center" style="padding: 3rem;">
                         <p style="color: var(--gray);">No deliveries yet. Create your first link and make a client's day.</p>
-                        <a href="/admin/deliveries/new" class="btn btn-primary mt-md">Create Delivery</a>
+                        <a href="<?= BASE_PATH ?>/admin/deliveries/new" class="btn btn-primary mt-md">Create Delivery</a>
                     </td>
                 </tr>
                 <?php else: ?>

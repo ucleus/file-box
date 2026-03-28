@@ -50,7 +50,7 @@ include __DIR__ . '/../partials/header.php';
 
     <!-- CTA Row -->
     <div class="cta-row">
-        <a href="/dl/<?= htmlspecialchars($delivery['token']) ?>/download-all" class="btn btn-primary">
+        <a href="<?= BASE_PATH ?>/dl/<?= htmlspecialchars($delivery['token']) ?>/download-all" class="btn btn-primary">
             Download everything (.zip)
         </a>
         <?php if ($delivery['brand_notes']): ?>
