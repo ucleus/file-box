@@ -109,9 +109,4 @@ include __DIR__ . '/../partials/header.php';
     </div>
 </div>
 
-<script>
-    let createdDeliveryId = null;
-    let createdToken = null;
-</script>
-
 <?php include __DIR__ . '/../partials/footer.php'; ?>

@@ -1,5 +1,10 @@
 // Ucleus Logo Delivery Portal - JavaScript
 
+// Shared state variables
+let createdDeliveryId = null;
+let createdToken = null;
+let currentDeliveryId = null;
+
 // ============================================
 // Utility Functions
 // ============================================
@@ -195,7 +200,7 @@ function copyLink(token) {
 }
 
 function showActions(deliveryId) {
-    window.currentDeliveryId = deliveryId;
+    currentDeliveryId = deliveryId;
     openModal('actionsModal');
 }
 
@@ -323,8 +328,8 @@ function createDelivery(event) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            window.createdDeliveryId = data.delivery_id;
-            window.createdToken = data.token;
+            createdDeliveryId = data.delivery_id;
+            createdToken = data.token;
 
             // Show success card
             document.getElementById('deliveryForm').closest('.card').classList.add('hidden');
