@@ -192,7 +192,7 @@ try {
     http_response_code(404);
     require __DIR__ . '/src/Views/public/invalid.php';
 
-} catch (Exception $e) {
+} catch (\Throwable $e) {
     // Error handling
     error_log($e->getMessage());
     http_response_code(500);

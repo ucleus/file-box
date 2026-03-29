@@ -223,7 +223,7 @@ class DeliveryController
             htmlspecialchars($message)
         );
 
-        Response::success('Thanks! I'll respond shortly.');
+        Response::success("Thanks! I'll respond shortly.");
     }
 
     private function showExpired()
